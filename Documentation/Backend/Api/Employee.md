@@ -12,7 +12,11 @@
       "email": "john.doe@example.com",
       "phoneNumber": "123-456-7890",
       "department": "IT",
-      "position": "Software Engineer"
+      "position": "Software Engineer",
+      "workingHours": {
+        "start": "09:00 AM",
+        "end": "05:00 PM"
+      }
     },
     // Other employees...
   ]
@@ -29,7 +33,11 @@
     "email": "john.doe@example.com",
     "phoneNumber": "123-456-7890",
     "department": "IT",
-    "position": "Software Engineer"
+    "position": "Software Engineer",
+    "workingHours": {
+      "start": "09:00 AM",
+      "end": "05:00 PM"
+    }
   }
   ```
 
@@ -43,7 +51,11 @@
     "email": "jane.smith@example.com",
     "phoneNumber": "987-654-3210",
     "department": "HR",
-    "position": "HR Specialist"
+    "position": "HR Specialist",
+      "workingHours": {
+        "start": "09:00 AM",
+        "end": "05:00 PM"
+      }
   }
   ```
 - **Response:**
@@ -58,7 +70,11 @@
       "email": "jane.smith@example.com",
       "phoneNumber": "987-654-3210",
       "department": "HR",
-      "position": "HR Specialist"
+      "position": "HR Specialist",
+      "workingHours": {
+        "start": "09:00 AM",
+        "end": "05:00 PM"
+      }
     }
   }
   ```
