@@ -32,6 +32,81 @@
   }
   ```
 
+  --
+##### for whole day and custom hours
+
+#### Create Leave Request:
+- **Endpoint:** `POST /api/leave-requests`
+- **Request Payload for Whole-Day Leave:**
+  ```json
+  {
+    "employeeId": "employee_id_here",
+    "leaveType": "Annual Leave",
+    "startDate": "2024-01-15",
+    "endDate": "2024-01-20",
+    "reason": "Vacation trip"
+  }
+  ```
+- **Response for Whole-Day Leave:**
+  ```json
+  {
+    "success": true,
+    "message": "Leave request submitted successfully.",
+    "leaveRequest": {
+      "leaveRequestId": "new_leave_request_id",
+      "employeeId": "employee_id_here",
+      "leaveType": "Annual Leave",
+      "startDate": "2024-01-15",
+      "endDate": "2024-01-20",
+      "reason": "Vacation trip",
+      "customHours": null,  // For whole-day leave, custom hours are null
+      "allowedLeaves": 15,
+      "takenLeaves": 0,
+      "remainingLeaves": 15
+    }
+  }
+  ```
+
+- **Request Payload for Custom Hours Leave:**
+  ```json
+  {
+    "employeeId": "employee_id_here",
+    "leaveType": "Sick Leave",
+    "startDate": "2024-02-10",
+    "endDate": "2024-02-10",
+    "reason": "Medical appointment",
+    "customHours": {
+      "start": "09:00 AM",
+      "end": "01:00 PM"
+    }
+  }
+  ```
+- **Response for Custom Hours Leave:**
+  ```json
+  {
+    "success": true,
+    "message": "Leave request submitted successfully.",
+    "leaveRequest": {
+      "leaveRequestId": "new_leave_request_id",
+      "employeeId": "employee_id_here",
+      "leaveType": "Sick Leave",
+      "startDate": "2024-02-10",
+      "endDate": "2024-02-10",
+      "reason": "Medical appointment",
+      "customHours": {
+        "start": "09:00 AM",
+        "end": "01:00 PM"
+      },
+      "allowedLeaves": 15,
+      "takenLeaves": 0,
+      "remainingLeaves": 15
+    }
+  }
+  ```
+ if `customHours` is not provided, the system assumes it's a whole-day leave. If `customHours` is included, it's considered a leave for specific hours.
+
+  --
+
 #### Get All Leaves:
 - **Endpoint:** `GET /api/leaves`
 - **Response:**
