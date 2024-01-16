@@ -1,24 +1,27 @@
 import { Divider, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Tooltip } from '@mui/material'
-import React, { useState } from 'react'
 import { useTheme } from '../../theme'
 import { MenuItems } from '../MenuItems'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { DrawerHeader, StyledDrawer } from './style';
-import { useLocation } from 'react-router-dom';
-
+import { useLocation, useNavigate, } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { closeDrawer, openDrawer } from '../../features/drawer/drawerSlice';
 
 const AppSidebar = () => {
     const theme = useTheme()
     const location = useLocation();
-    const [open, setOpen] = useState(true);
-    const handleDrawerClose = () => {
-        setOpen(!open);
-    };
+    const navigate = useNavigate()
+    const dispatch = useDispatch();
+    const isDrawerOpen = useSelector((state: any) => state.drawer.isDrawerOpen);
+
+    const handleMenuItemClick = (target: string) => {
+        navigate(target ?? '#')
+    }
 
     return (
         <StyledDrawer
             variant="permanent"
-            open={open}
+            open={isDrawerOpen}
             PaperProps={{
                 sx: {
                     backgroundColor: theme.customColor.sidebar.background
@@ -26,7 +29,7 @@ const AppSidebar = () => {
             }}
         >
             <DrawerHeader>
-                <IconButton onClick={handleDrawerClose}>
+                <IconButton onClick={() => (isDrawerOpen ? dispatch(closeDrawer()) : dispatch(openDrawer()))}>
                     <ChevronRightIcon style={{
                         color: theme.customColor.sidebar.icon
                     }} />
@@ -38,23 +41,23 @@ const AppSidebar = () => {
             <List>
                 {MenuItems().map(({ name, icon, label, targetLink }, index) => (
                     <ListItem key={`${name}-${index}`} disablePadding sx={{ display: 'block' }}>
-                        <Tooltip title={open ? '' : label} arrow placement='right' >
+                        <Tooltip title={isDrawerOpen ? '' : label} arrow placement='right' >
                             <ListItemButton
                                 sx={{
                                     minHeight: 48,
-                                    justifyContent: open ? 'initial' : 'center',
+                                    justifyContent: isDrawerOpen ? 'initial' : 'center',
                                     px: 2.5,
                                     backgroundColor: location.pathname === targetLink ? theme.customColor.sidebar.activeBackground : 'inherit',
                                     '&:hover': {
                                         backgroundColor: location.pathname === targetLink ? theme.customColor.sidebar.activeBackground : theme.customColor.sidebar.hoverBackground,
                                     },
                                 }}
-                                href={targetLink ?? '#'}
+                                onClick={() => handleMenuItemClick(targetLink)}
                             >
                                 <ListItemIcon
                                     sx={{
                                         minWidth: 0,
-                                        mr: open ? 3 : 'auto',
+                                        mr: isDrawerOpen ? 3 : 'auto',
                                         justifyContent: 'center',
                                     }}
                                 >
@@ -64,7 +67,7 @@ const AppSidebar = () => {
                                 <ListItemText
                                     primary={label}
                                     sx={{
-                                        opacity: open ? 1 : 0,
+                                        opacity: isDrawerOpen ? 1 : 0,
                                         color: theme.customColor.sidebar.text
                                     }}
                                 />
