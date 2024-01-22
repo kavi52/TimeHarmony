@@ -1,5 +1,4 @@
 import React from 'react'
-import withLayout from '../../layout/withLayout'
 
 const ReportsAnalytics = () => {
   return (
@@ -7,4 +6,4 @@ const ReportsAnalytics = () => {
   )
 }
 
-export default withLayout(ReportsAnalytics)
+export default ReportsAnalytics

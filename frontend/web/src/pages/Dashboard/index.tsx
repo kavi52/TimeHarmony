@@ -1,14 +1,9 @@
-// src/pages/DashboardPage.tsx
-import React from 'react';
-import withLayout from '../../layout/withLayout';
+import React from 'react'
 
-const Dashboard: React.FC = () => {
+const Dashboard = () => {
   return (
-    <div>
-      <h2>Main Content Goes Here</h2>
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae adipisci tempora veritatis, excepturi voluptatem nihil dolores voluptate? Ipsam officiis voluptates quia! Similique odio expedita maiores ut, magni fugiat eius quos.
-    </div>
-  );
-};
+    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab id harum tempore corrupti iusto a architecto necessitatibus. Inventore, iure dignissimos! Aut minus asperiores pariatur earum sed ad, eius optio repudiandae.</div>
+  )
+}
 
-export default withLayout(Dashboard);
+export default Dashboard

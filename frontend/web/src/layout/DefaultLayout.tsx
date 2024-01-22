@@ -1,11 +1,16 @@
 import { Box } from "@mui/material";
 import { AppHeader, AppSidebar } from "../components"
+import { Outlet, useLocation } from "react-router-dom";
 
-interface DefaultLayoutProps {
-  children: React.ReactNode;
-}
+const DefaultLayout = () => {
+  const { pathname } = useLocation()
 
-const DefaultLayout = ({ children }: DefaultLayoutProps) => {
+  // const withoutLayoutPath = ['/login', '/register', '/password-reset']
+
+  // if (withoutLayoutPath.includes(pathname)) {
+  //   return <Outlet />;
+  // }
+
   return (
     <Box sx={{ display: 'flex' }}>
       <AppSidebar />
@@ -15,7 +20,7 @@ const DefaultLayout = ({ children }: DefaultLayoutProps) => {
           component="main"
           sx={{ p: 3 }}
         >
-          {children}
+          <Outlet />
         </Box>
       </Box>
     </Box>

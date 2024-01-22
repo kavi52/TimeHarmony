@@ -1,5 +1,4 @@
 import React from 'react'
-import withLayout from '../../layout/withLayout'
 
 const Leave = () => {
   return (
@@ -7,4 +6,4 @@ const Leave = () => {
   )
 }
 
-export default withLayout(Leave)
+export default Leave

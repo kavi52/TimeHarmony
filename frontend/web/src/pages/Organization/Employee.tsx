@@ -1,5 +1,4 @@
 import React from 'react'
-import withLayout from '../../layout/withLayout'
 
 const Employee = () => {
   return (
@@ -7,4 +6,4 @@ const Employee = () => {
   )
 }
 
-export default withLayout(Employee)
+export default Employee

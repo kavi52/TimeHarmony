@@ -1,10 +1,9 @@
 export { default as Register } from './Register';
 export { default as Login } from './Login';
 export { default as PasswordReset } from './PasswordReset';
-export { default as Landing } from './Landing';
 export { default as Dashboard } from './Dashboard';
 export { default as Attendance } from './Attendance';
-export { default as Employee } from './Employee';
+export { default as Employee } from './Organization/Employee';
 export { default as HelpSupport } from './HelpSupport';
 export { default as Leave } from './Leave';
 export { default as Notifications } from './Notifications';

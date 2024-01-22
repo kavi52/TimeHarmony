@@ -6,7 +6,8 @@ interface CustomPaletteOptions {
         text: string,
         icon: string,
         hoverBackground:  string,
-        activeBackground: string
+        activeBackground: string,
+        subIcon: string
     },
     header:{
         background: string,
@@ -69,7 +70,8 @@ const theme = createTheme({
             text: colors.gray200,
             icon: colors.gray500,
             hoverBackground: colors.gray800,
-            activeBackground: colors.gray850
+            activeBackground: colors.gray850,
+            subIcon: colors.highlight
         },
         header:{
             background: colors.white,

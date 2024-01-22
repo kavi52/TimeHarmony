@@ -3,10 +3,14 @@ import EventOutlinedIcon from '@mui/icons-material/EventOutlined';
 import DashboardCustomizeOutlinedIcon from '@mui/icons-material/DashboardCustomizeOutlined';
 import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
 import EventBusyOutlinedIcon from '@mui/icons-material/EventBusyOutlined';
-import PersonSearchOutlinedIcon from '@mui/icons-material/PersonSearchOutlined';
 import BarChartOutlinedIcon from '@mui/icons-material/BarChartOutlined';
 import ManageAccountsOutlinedIcon from '@mui/icons-material/ManageAccountsOutlined';
 import NotificationsActiveOutlinedIcon from '@mui/icons-material/NotificationsActiveOutlined';
+import BusinessOutlinedIcon from '@mui/icons-material/BusinessOutlined';
+import PersonSearchOutlinedIcon from '@mui/icons-material/PersonSearchOutlined';
+import SupervisorAccountOutlinedIcon from '@mui/icons-material/SupervisorAccountOutlined';
+import AssignmentIndOutlinedIcon from '@mui/icons-material/AssignmentIndOutlined';
+import routes from '../../router/routes';
 
 export const MenuItems = () => {
     const theme = useTheme()
@@ -15,7 +19,7 @@ export const MenuItems = () => {
             {
                 name: 'dashboard',
                 label: 'Dashboard',
-                targetLink: '/dashboard',
+                targetLink: routes.dashboard(),
                 icon: (
                     <DashboardCustomizeOutlinedIcon
                         style={{
@@ -27,7 +31,7 @@ export const MenuItems = () => {
             {
                 name: 'attendance',
                 label: 'Attendance',
-                targetLink: '/attendance',
+                targetLink: routes.attendance(),
                 icon: (
                     <EventOutlinedIcon
                         style={{
@@ -49,16 +53,83 @@ export const MenuItems = () => {
                 )
             },
             {
-                name: 'employee',
-                label: 'Employee',
-                targetLink: '/employee',
+                name: 'organization',
+                label: 'Organization',
+                targetLink: routes.employee(),
                 icon: (
-                    <PersonSearchOutlinedIcon
+                    <BusinessOutlinedIcon
                         style={{
                             color: theme.customColor.sidebar.icon
                         }}
                     />
-                )
+                ),
+                submenu: [
+                    {
+                        name: 'employee',
+                        label: 'Employees',
+                        targetLink: '/employee',
+                        icon: (
+                            <PersonSearchOutlinedIcon
+                                style={{
+                                    color: theme.customColor.sidebar.subIcon,
+                                    fontSize: '20px'
+                                }}
+                            />
+                        ),
+                    },
+                    {
+                        name: 'roles',
+                        label: 'Roles',
+                        targetLink: '/employee/roles',
+                        icon: (
+                            <AssignmentIndOutlinedIcon
+                                style={{
+                                    color: theme.customColor.sidebar.subIcon,
+                                    fontSize: '20px'
+                                }}
+                            />
+                        ),
+                    },
+                    {
+                        name: 'department',
+                        label: 'Department',
+                        targetLink: '/employee/department',
+                        icon: (
+                            <PersonSearchOutlinedIcon
+                                style={{
+                                    color: theme.customColor.sidebar.subIcon,
+                                    fontSize: '20px'
+                                }}
+                            />
+                        ),
+                    },
+                    {
+                        name: 'function',
+                        label: 'Function',
+                        targetLink: '/employee/function',
+                        icon: (
+                            <PersonSearchOutlinedIcon
+                                style={{
+                                    color: theme.customColor.sidebar.subIcon,
+                                    fontSize: '20px'
+                                }}
+                            />
+                        ),
+                    },
+                    {
+                        name: 'employee-category',
+                        label: 'Employee Category',
+                        targetLink: '/employee/category',
+                        icon: (
+                            <PersonSearchOutlinedIcon
+                                style={{
+                                    color: theme.customColor.sidebar.subIcon,
+                                    fontSize: '20px'
+                                }}
+                            />
+                        ),
+                    },
+                ]
             },
             {
                 name: 'reports-analytics',

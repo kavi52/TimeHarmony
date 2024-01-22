@@ -1,5 +1,4 @@
 import React from 'react'
-import withLayout from '../../layout/withLayout'
 
 const Attendance = () => {
   return (
@@ -7,4 +6,4 @@ const Attendance = () => {
   )
 }
 
-export default withLayout(Attendance)
+export default Attendance

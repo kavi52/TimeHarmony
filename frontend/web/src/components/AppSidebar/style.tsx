@@ -37,8 +37,15 @@ export const StyledDrawer = styled(MuiDrawer, { shouldForwardProp: (prop) => pro
         ...(!open && {
             ...closedMixin(theme),
             '& .MuiDrawer-paper': closedMixin(theme),
+            // '&:hover': {
+            //     '& .MuiDrawer-paper': openedMixin(theme),
+            //     position: 'fixed',
+            //     height: '100%',
+            //     zIndex: 999999,
+            //     opacity: 0.97
+            // },
         }),
-        backgroundColor: 'red'
+
     }),
 );
 
@@ -46,8 +53,7 @@ export const StyledDrawer = styled(MuiDrawer, { shouldForwardProp: (prop) => pro
 export const DrawerHeader = styled('div')(({ theme }) => ({
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'flex-end',
+    justifyContent: 'flex-start',
     padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
     ...theme.mixins.toolbar,
 }));

@@ -1,5 +1,4 @@
 import React from 'react'
-import withLayout from '../../layout/withLayout'
 
 const ProfileSettings = () => {
   return (
@@ -7,4 +6,4 @@ const ProfileSettings = () => {
   )
 }
 
-export default withLayout(ProfileSettings)
+export default ProfileSettings
