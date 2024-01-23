@@ -1,4 +1,4 @@
-import { Accordion, AccordionDetails, AccordionSummary, Divider, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Tooltip, Typography } from '@mui/material'
+import { Accordion, AccordionDetails, AccordionSummary, Divider, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Tooltip } from '@mui/material'
 import { useTheme } from '../../theme'
 import { MenuItems } from '../MenuItems'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
@@ -8,6 +8,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { closeDrawer, openDrawer } from '../../features/drawer/drawerSlice';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExtensionOutlinedIcon from '@mui/icons-material/ExtensionOutlined';
+import { ReactNode } from 'react';
+
+interface ListItemsProps {
+    label: string;
+    targetLink: string;
+    icon: ReactNode;
+    mainMenu?: boolean;
+    childMenu?: boolean;
+    onClick?: () => void;
+}
 
 const AppSidebar = () => {
     const theme = useTheme()
@@ -17,8 +27,77 @@ const AppSidebar = () => {
     const isDrawerOpen = useSelector((state: any) => state.drawer.isDrawerOpen);
 
     const handleMenuItemClick = (target: string) => {
-        console.log("target", target)
         navigate(target ?? '#')
+    }
+
+    const ListItems = ({
+        label,
+        targetLink,
+        icon,
+        childMenu,
+        mainMenu,
+        onClick
+    }: ListItemsProps) => {
+        return (
+            <Tooltip title={isDrawerOpen ? '' : label} arrow placement='right' >
+                <ListItemButton
+                    sx={{
+                        minHeight: 48,
+                        justifyContent: isDrawerOpen ? 'initial' : 'center',
+                        px: 2.5,
+                        backgroundColor: location.pathname === targetLink ? theme.customColor.sidebar.activeBackground : 'inherit',
+                        '&:hover': {
+                            backgroundColor: location.pathname === targetLink ? theme.customColor.sidebar.activeBackground : theme.customColor.sidebar.hoverBackground,
+                        },
+                        ...(mainMenu
+                            ? {
+                                paddingRight: isDrawerOpen ? 2.5 : '0px'
+                            }
+                            : {}
+                        ),
+                        ...(childMenu
+                            ? {
+                                paddingLeft: isDrawerOpen ? '40px' : 2.5,
+                            }
+                            : {}
+                        ),
+                    }}
+                    onClick={() => {
+                        if (onClick) {
+                            onClick();
+                            return;
+                        }
+                        if (!targetLink) return;
+                        handleMenuItemClick(targetLink)
+                    }}
+                >
+                    <ListItemIcon
+                        sx={{
+                            minWidth: 0,
+                            mr: isDrawerOpen ? 3 : 'auto',
+                            justifyContent: 'center',
+                        }}
+                    >
+                        {icon ?? (
+                            <ExtensionOutlinedIcon style={{
+                                color: theme.customColor.sidebar.icon
+                            }} />
+                        )}
+                    </ListItemIcon>
+                    {
+                        isDrawerOpen && (
+                            <ListItemText
+                                primary={label}
+                                sx={{
+                                    opacity: isDrawerOpen ? 1 : 0,
+                                    color: theme.customColor.sidebar.text
+                                }}
+                            />
+                        )
+                    }
+                </ListItemButton>
+            </Tooltip>
+        )
     }
 
     return (
@@ -73,120 +152,40 @@ const AppSidebar = () => {
                                             }
                                         }}
                                     >
-                                        <Tooltip title={isDrawerOpen ? '' : label} arrow placement='right' >
-                                            <ListItemButton
-                                                sx={{
-                                                    minHeight: 48,
-                                                    justifyContent: isDrawerOpen ? 'initial' : 'center',
-                                                    px: 2.5,
-                                                    paddingRight: isDrawerOpen ? 2.5 : '0px'
-                                                }}
-                                                onClick={() => {
-                                                    if (!targetLink) return;
-                                                    handleMenuItemClick(targetLink)
-                                                }}
-                                            >
-                                                <ListItemIcon
-                                                    sx={{
-                                                        minWidth: 0,
-                                                        mr: isDrawerOpen ? 3 : 'auto',
-                                                        justifyContent: 'center',
-                                                    }}
-                                                >
-                                                    {icon}
-                                                </ListItemIcon>
-                                                {isDrawerOpen && (
-                                                    <ListItemText
-                                                        primary={label}
-                                                        sx={{
-                                                            opacity: isDrawerOpen ? 1 : 0,
-                                                            color: theme.customColor.sidebar.text
-                                                        }}
-                                                    />
-                                                )}
-                                            </ListItemButton>
-                                        </Tooltip>
-
+                                        <ListItems
+                                            icon={icon}
+                                            label={label}
+                                            targetLink={targetLink}
+                                            mainMenu
+                                        />
                                     </AccordionSummary>
                                     <AccordionDetails style={{
                                         padding: '0px',
                                     }}>
                                         {
-                                            submenu.map(({ label: submenuLabel, name: submenuName, targetLink: submenuTarget, icon: submenuIcon }, submenuIndex) => (
-                                                <Tooltip title={isDrawerOpen ? '' : submenuLabel} arrow placement='right' >
-                                                    <ListItemButton
-                                                        sx={{
-                                                            minHeight: 48,
-                                                            justifyContent: isDrawerOpen ? 'initial' : 'center',
-                                                            backgroundColor: location.pathname === submenuTarget ? theme.customColor.sidebar.activeBackground : 'inherit',
-                                                            '&:hover': {
-                                                                backgroundColor: location.pathname === submenuTarget ? theme.customColor.sidebar.activeBackground : theme.customColor.sidebar.hoverBackground,
-                                                            },
-                                                            px: 2.5,
-                                                            paddingLeft: isDrawerOpen ? '50px' : 2.5
-                                                        }}
-                                                        onClick={() => handleMenuItemClick(submenuTarget)}
-                                                        key={`${submenuName}-${index}-${submenuIndex}`}
-                                                    >
-                                                        <ListItemIcon
-                                                            sx={{
-                                                                minWidth: 0,
-                                                                mr: isDrawerOpen ? 2 : 'auto',
-                                                                justifyContent: 'center',
-                                                            }}
-                                                        >
-                                                            {submenuIcon}
-                                                        </ListItemIcon>
-                                                        <ListItemText
-                                                            primary={submenuLabel}
-                                                            sx={{
-                                                                opacity: isDrawerOpen ? 1 : 0,
-                                                                color: theme.customColor.sidebar.text,
-                                                            }}
-
-                                                        />
-                                                    </ListItemButton>
-                                                </Tooltip>
+                                            submenu.map(({
+                                                label: submenuLabel,
+                                                name: submenuName,
+                                                targetLink: submenuTarget,
+                                                icon: submenuIcon
+                                            }, submenuIndex) => (
+                                                <ListItems
+                                                    icon={submenuIcon}
+                                                    label={submenuLabel}
+                                                    targetLink={submenuTarget}
+                                                    childMenu
+                                                    key={`${submenuName}-${index}-${submenuIndex}`}
+                                                />
                                             ))
                                         }
                                     </AccordionDetails>
                                 </Accordion>
                             ) : (
-                                <Tooltip title={isDrawerOpen ? '' : label} arrow placement='right' >
-                                    <ListItemButton
-                                        sx={{
-                                            minHeight: 48,
-                                            justifyContent: isDrawerOpen ? 'initial' : 'center',
-                                            px: 2.5,
-                                            backgroundColor: location.pathname === targetLink ? theme.customColor.sidebar.activeBackground : 'inherit',
-                                            '&:hover': {
-                                                backgroundColor: location.pathname === targetLink ? theme.customColor.sidebar.activeBackground : theme.customColor.sidebar.hoverBackground,
-                                            },
-                                        }}
-                                        onClick={() => handleMenuItemClick(targetLink)}
-                                    >
-                                        <ListItemIcon
-                                            sx={{
-                                                minWidth: 0,
-                                                mr: isDrawerOpen ? 3 : 'auto',
-                                                justifyContent: 'center',
-                                            }}
-                                        >
-                                            {icon ?? (
-                                                <ExtensionOutlinedIcon style={{
-                                                    color: theme.customColor.sidebar.icon
-                                                }} />
-                                            )}
-                                        </ListItemIcon>
-                                        <ListItemText
-                                            primary={label}
-                                            sx={{
-                                                opacity: isDrawerOpen ? 1 : 0,
-                                                color: theme.customColor.sidebar.text
-                                            }}
-                                        />
-                                    </ListItemButton>
-                                </Tooltip>
+                                <ListItems
+                                    icon={icon}
+                                    label={label}
+                                    targetLink={targetLink}
+                                />
                             )
                         }
                     </ListItem>

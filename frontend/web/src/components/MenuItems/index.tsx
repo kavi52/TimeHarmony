@@ -10,6 +10,9 @@ import BusinessOutlinedIcon from '@mui/icons-material/BusinessOutlined';
 import PersonSearchOutlinedIcon from '@mui/icons-material/PersonSearchOutlined';
 import SupervisorAccountOutlinedIcon from '@mui/icons-material/SupervisorAccountOutlined';
 import AssignmentIndOutlinedIcon from '@mui/icons-material/AssignmentIndOutlined';
+import LabelOutlinedIcon from '@mui/icons-material/LabelOutlined';
+import WorkOutlineOutlinedIcon from '@mui/icons-material/WorkOutlineOutlined';
+
 import routes from '../../router/routes';
 
 export const MenuItems = () => {
@@ -43,7 +46,7 @@ export const MenuItems = () => {
             {
                 name: 'leave',
                 label: 'Leave',
-                targetLink: '/leave',
+                targetLink: routes.leave(),
                 icon: (
                     <EventBusyOutlinedIcon
                         style={{
@@ -67,7 +70,7 @@ export const MenuItems = () => {
                     {
                         name: 'employee',
                         label: 'Employees',
-                        targetLink: '/employee',
+                        targetLink: routes.employee(),
                         icon: (
                             <PersonSearchOutlinedIcon
                                 style={{
@@ -80,7 +83,7 @@ export const MenuItems = () => {
                     {
                         name: 'roles',
                         label: 'Roles',
-                        targetLink: '/employee/roles',
+                        targetLink: routes.employeeRoles(),
                         icon: (
                             <AssignmentIndOutlinedIcon
                                 style={{
@@ -93,9 +96,9 @@ export const MenuItems = () => {
                     {
                         name: 'department',
                         label: 'Department',
-                        targetLink: '/employee/department',
+                        targetLink: routes.employeeDepartment(),
                         icon: (
-                            <PersonSearchOutlinedIcon
+                            <WorkOutlineOutlinedIcon
                                 style={{
                                     color: theme.customColor.sidebar.subIcon,
                                     fontSize: '20px'
@@ -106,9 +109,9 @@ export const MenuItems = () => {
                     {
                         name: 'function',
                         label: 'Function',
-                        targetLink: '/employee/function',
+                        targetLink: routes.employeeFunction(),
                         icon: (
-                            <PersonSearchOutlinedIcon
+                            <LabelOutlinedIcon
                                 style={{
                                     color: theme.customColor.sidebar.subIcon,
                                     fontSize: '20px'
@@ -119,9 +122,9 @@ export const MenuItems = () => {
                     {
                         name: 'employee-category',
                         label: 'Employee Category',
-                        targetLink: '/employee/category',
+                        targetLink: routes.employeeCategory(),
                         icon: (
-                            <PersonSearchOutlinedIcon
+                            <SupervisorAccountOutlinedIcon
                                 style={{
                                     color: theme.customColor.sidebar.subIcon,
                                     fontSize: '20px'
@@ -134,7 +137,7 @@ export const MenuItems = () => {
             {
                 name: 'reports-analytics',
                 label: 'Reports and Analytics',
-                targetLink: '/reports-analytics',
+                targetLink: routes.reportsAnalytics(),
                 icon: (
                     <BarChartOutlinedIcon
                         style={{
@@ -146,7 +149,7 @@ export const MenuItems = () => {
             {
                 name: 'profile-settings',
                 label: 'Profile and Settings',
-                targetLink: '/profile-settings',
+                targetLink: routes.profileSettings(),
                 icon: (
                     <ManageAccountsOutlinedIcon
                         style={{
@@ -158,7 +161,7 @@ export const MenuItems = () => {
             {
                 name: 'notifications',
                 label: 'Notifications',
-                targetLink: '/notifications',
+                targetLink: routes.notifications(),
                 icon: (
                     <NotificationsActiveOutlinedIcon
                         style={{
@@ -170,7 +173,7 @@ export const MenuItems = () => {
             {
                 name: 'help-support',
                 label: 'Help and Support',
-                targetLink: '/help-support',
+                targetLink: routes.helpSupport(),
                 icon: (
                     <HelpOutlineOutlinedIcon
                         style={{
