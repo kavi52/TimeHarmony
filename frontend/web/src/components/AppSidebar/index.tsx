@@ -21,7 +21,7 @@ interface ListItemsProps {
 
 const AppSidebar = () => {
     const theme = useTheme()
-    const location = useLocation();
+    const { pathname } = useLocation();
     const navigate = useNavigate()
     const dispatch = useDispatch();
     const isDrawerOpen = useSelector((state: any) => state.drawer.isDrawerOpen);
@@ -45,9 +45,9 @@ const AppSidebar = () => {
                         minHeight: 48,
                         justifyContent: isDrawerOpen ? 'initial' : 'center',
                         px: 2.5,
-                        backgroundColor: location.pathname === targetLink ? theme.customColor.sidebar.activeBackground : 'inherit',
+                        backgroundColor: pathname === targetLink ? theme.customColor.sidebar.activeBackground : 'inherit',
                         '&:hover': {
-                            backgroundColor: location.pathname === targetLink ? theme.customColor.sidebar.activeBackground : theme.customColor.sidebar.hoverBackground,
+                            backgroundColor: pathname === targetLink ? theme.customColor.sidebar.activeBackground : theme.customColor.sidebar.hoverBackground,
                         },
                         ...(mainMenu
                             ? {
@@ -58,6 +58,10 @@ const AppSidebar = () => {
                         ...(childMenu
                             ? {
                                 paddingLeft: isDrawerOpen ? '40px' : 2.5,
+                                backgroundColor: pathname === targetLink ? theme.customColor.sidebar.subMenuActiveBackground : 'inherit',
+                                '&:hover': {
+                                    backgroundColor: pathname === targetLink ? theme.customColor.sidebar.subMenuActiveBackground : theme.customColor.sidebar.hoverBackground,
+                                },
                             }
                             : {}
                         ),
@@ -140,7 +144,7 @@ const AppSidebar = () => {
                                         sx={{
                                             padding: '0px',
                                             margin: 0,
-                                            backgroundColor: location.pathname === targetLink ? theme.customColor.sidebar.activeBackground : 'inherit',
+                                            backgroundColor: pathname.includes(targetLink) ? theme.customColor.sidebar.activeBackground : 'inherit',
                                             '& .MuiAccordionSummary-content': {
                                                 margin: 0,
                                             },
@@ -148,7 +152,7 @@ const AppSidebar = () => {
                                                 margin: 0,
                                             },
                                             '&:hover': {
-                                                backgroundColor: location.pathname === targetLink ? theme.customColor.sidebar.activeBackground : theme.customColor.sidebar.hoverBackground,
+                                                backgroundColor: pathname === targetLink ? theme.customColor.sidebar.activeBackground : theme.customColor.sidebar.hoverBackground,
                                             }
                                         }}
                                     >

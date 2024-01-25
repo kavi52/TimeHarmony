@@ -7,7 +7,8 @@ interface CustomPaletteOptions {
         icon: string,
         hoverBackground:  string,
         activeBackground: string,
-        subIcon: string
+        subIcon: string,
+        subMenuActiveBackground: string
     },
     header:{
         background: string,
@@ -29,7 +30,7 @@ export const colors = {
     accent2: '#A5D8DD',
     highlight: '#0091D5',
     white: '#fff',
-    grayBase: '#323a49',
+    grayBase: '#323a59',
     gray100: '#f3f4f7',
     gray200: '#e7eaee',
     gray300: '#dbdfe6',
@@ -71,7 +72,8 @@ const theme = createTheme({
             icon: colors.gray500,
             hoverBackground: colors.gray800,
             activeBackground: colors.gray850,
-            subIcon: colors.highlight
+            subIcon: colors.highlight,
+            subMenuActiveBackground: colors.grayBase
         },
         header:{
             background: colors.white,
