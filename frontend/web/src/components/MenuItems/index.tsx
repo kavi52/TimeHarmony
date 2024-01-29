@@ -12,7 +12,8 @@ import SupervisorAccountOutlinedIcon from '@mui/icons-material/SupervisorAccount
 import AssignmentIndOutlinedIcon from '@mui/icons-material/AssignmentIndOutlined';
 import LabelOutlinedIcon from '@mui/icons-material/LabelOutlined';
 import WorkOutlineOutlinedIcon from '@mui/icons-material/WorkOutlineOutlined';
-
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
+import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
 import routes from '../../router/routes';
 
 export const MenuItems = () => {
@@ -59,6 +60,7 @@ export const MenuItems = () => {
                 name: 'organization',
                 label: 'Organization',
                 targetLink: routes.employee(),
+                activeBasePath: routes.employee(),
                 icon: (
                     <BusinessOutlinedIcon
                         style={{
@@ -181,6 +183,47 @@ export const MenuItems = () => {
                         }}
                     />
                 )
+            },
+            {
+                name: 'manage',
+                label: 'Manage',
+                targetLink: routes.manageUsers(),
+                activeBasePath: routes.manage(),
+                icon: (
+                    <SettingsOutlinedIcon
+                        style={{
+                            color: theme.customColor.sidebar.icon
+                        }}
+                    />
+                ),
+                submenu: [
+                    {
+                        name: 'users',
+                        label: 'Users',
+                        targetLink: routes.manageUsers(),
+                        icon: (
+                            <GroupOutlinedIcon
+                                style={{
+                                    color: theme.customColor.sidebar.subIcon,
+                                    fontSize: '20px'
+                                }}
+                            />
+                        ),
+                    },
+                    {
+                        name: 'roles',
+                        label: 'Roles',
+                        targetLink: routes.manageRoles(),
+                        icon: (
+                            <AssignmentIndOutlinedIcon
+                                style={{
+                                    color: theme.customColor.sidebar.subIcon,
+                                    fontSize: '20px'
+                                }}
+                            />
+                        ),
+                    },
+                ]
             },
         ]
     )

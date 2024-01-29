@@ -1,5 +1,5 @@
 import { Navigate, createBrowserRouter } from "react-router-dom";
-import { Attendance, Dashboard, Employee, HelpSupport, Leave, Login, Notifications, ProfileSettings, Register, ReportsAnalytics } from "../pages";
+import { Attendance, Dashboard, Employee, HelpSupport, Leave, Login, ManageRoles, ManageUsers, Notifications, PasswordReset, ProfileSettings, Register, ReportsAnalytics } from "../pages";
 import routes from "./routes";
 import Roles from "../pages/Organization/Roles";
 import Department from "../pages/Organization/Department";
@@ -19,12 +19,12 @@ export const router = createBrowserRouter(
             element: <Login />
         },
         {
-            path: '/register',
+            path: routes.register(),
             element: <Register />
         },
         {
-            path: '/register',
-            element: <Register />
+            path: routes.passwordReset(),
+            element: <PasswordReset />
         },
         {
             element: <DefaultLayout />,
@@ -80,6 +80,14 @@ export const router = createBrowserRouter(
                 {
                     path: routes.helpSupport(),
                     element: <HelpSupport />,
+                },
+                {
+                    path: routes.manageUsers(),
+                    element: <ManageUsers />,
+                },
+                {
+                    path: routes.manageRoles(),
+                    element: <ManageRoles />,
                 },
                 {
                     path: '*',

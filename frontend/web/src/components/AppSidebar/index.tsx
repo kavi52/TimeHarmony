@@ -26,6 +26,8 @@ const AppSidebar = () => {
     const dispatch = useDispatch();
     const isDrawerOpen = useSelector((state: any) => state.drawer.isDrawerOpen);
 
+    console.log("pathname", pathname)
+
     const handleMenuItemClick = (target: string) => {
         navigate(target ?? '#')
     }
@@ -125,7 +127,7 @@ const AppSidebar = () => {
             <Divider />
 
             <List>
-                {MenuItems().map(({ name, icon, label, targetLink, submenu }, index) => (
+                {MenuItems().map(({ name, icon, label, targetLink, submenu, activeBasePath }, index) => (
                     <ListItem key={`${name}-${index}`} disablePadding sx={{ display: 'block' }}>
                         {
                             submenu?.length ? (
@@ -144,7 +146,7 @@ const AppSidebar = () => {
                                         sx={{
                                             padding: '0px',
                                             margin: 0,
-                                            backgroundColor: pathname.includes(targetLink) ? theme.customColor.sidebar.activeBackground : 'inherit',
+                                            backgroundColor: pathname.includes(activeBasePath) ? theme.customColor.sidebar.activeBackground : 'inherit',
                                             '& .MuiAccordionSummary-content': {
                                                 margin: 0,
                                             },
@@ -152,7 +154,7 @@ const AppSidebar = () => {
                                                 margin: 0,
                                             },
                                             '&:hover': {
-                                                backgroundColor: pathname === targetLink ? theme.customColor.sidebar.activeBackground : theme.customColor.sidebar.hoverBackground,
+                                                backgroundColor: pathname === activeBasePath ? theme.customColor.sidebar.activeBackground : theme.customColor.sidebar.hoverBackground,
                                             }
                                         }}
                                     >

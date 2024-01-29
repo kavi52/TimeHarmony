@@ -9,3 +9,5 @@ export { default as Leave } from './Leave';
 export { default as Notifications } from './Notifications';
 export { default as ProfileSettings } from './ProfileSettings';
 export { default as ReportsAnalytics } from './ReportsAnalytics/ReportsAnalytics';
+export { default as ManageUsers } from './Manage/Users';
+export { default as ManageRoles } from './Manage/Roles';

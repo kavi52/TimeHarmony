@@ -1,6 +1,8 @@
 const routes = {
     root: () => '/',
     login: () => 'login',
+    register: () => 'register',
+    passwordReset: () => 'password-reset',
     dashboard: () => '/dashboard',
     attendance: () => '/attendance',
     employee: () => '/employee',
@@ -13,6 +15,9 @@ const routes = {
     profileSettings: () => '/profile-settings',
     notifications: () => '/notifications',
     helpSupport: () => '/help-support',
+    manage: () => '/manage',
+    manageUsers: () => '/manage/users',
+    manageRoles: () => '/manage/roles',
 }
 
 export default routes
