@@ -132,7 +132,6 @@ const AppSidebar = () => {
                         {
                             submenu?.length ? (
                                 <Accordion
-                                    defaultExpanded
                                     style={{
                                         backgroundColor: theme.customColor.sidebar.background,
                                     }}

@@ -5,7 +5,7 @@ import { FullHeightContainer } from '../style';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     email: '',
@@ -31,7 +31,7 @@ const Login = () => {
   };
 
   return (
-    <FullHeightContainer  maxWidth="xs">
+    <FullHeightContainer maxWidth="xs">
       <CssBaseline />
       <div>
         <Typography variant="h5" align="center">
